@@ -1,6 +1,10 @@
+import 'package:expenses_manager/widgets/user_transaction.dart';
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
+
+  final Function addNewTransaction;
+  NewTransaction(this.addNewTransaction);
 
   final titleController = TextEditingController();
   final amountController = TextEditingController();
@@ -28,8 +32,10 @@ class NewTransaction extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
-                print(titleController.text);
-                print(amountController.text);
+                addNewTransaction(
+                  titleController.text, 
+                  double.parse(amountController.text)
+                );
               },
               textColor: Colors.purple, 
               child: Text("Add Transaction"),
